@@ -9,14 +9,13 @@
     </head>
     <body>
         <div class="container" ng-controller="MainCtrl as main">
-            <h3>Race to Awesome</h3>
             <div class="well">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Lane</th>
-                        <th>Contestant</th>
-                        <th>Score</th>
+                        <th>Player</th>
+                        <th>Hits</th>
+                        <th>Ships Left</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -27,6 +26,24 @@
                     </tr>
                     </tbody>
                 </table>
+            </div>
+        </div>
+        <div class="container" ng-controller="Ocean as ocean">
+            <div class="ocean">
+                <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
+                        <button type="button" id="{{c}}{{r}}" class="btn btn-default" ng-click="ocean.fireMissile(r, c)">&nbsp;{{hits}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" ng-controller="MyOcean as myOcean">
+            <div class="myOcean">
+                <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
+                        <button type="button" id="{{c}}{{r}}" class="btn btn-default {{hits}}">&nbsp;</button>
+                    </div>
+                </div>
             </div>
         </div>
 
