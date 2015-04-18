@@ -1,6 +1,6 @@
 var app = angular.module('leaderboard', ['firebase']);
 
-app.constant('FIREBASE_URI', 'https://udhack.firebaseio.com/#-JnBx8QfEj-dulj7FMSR|1ebf36cc4df215e5ba7498a1a0a51375');
+app.constant('FIREBASE_URI', 'https://udhack.firebaseio.com/');
 
 app.controller('MainCtrl', function (ContestantsService) {
     var main = this;
