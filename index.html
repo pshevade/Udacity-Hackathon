@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="leaderboard">
+    <head>
+        <title>AngularJS Leader Board</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Bootstrap -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="css/leaderboard.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div class="container" ng-controller="MainCtrl as main">
+            <h3>Race to Awesome</h3>
+            <div class="well">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Lane</th>
+                        <th>Contestant</th>
+                        <th>Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="contestant in main.contestants">
+                        <td>{{contestant.lane}}</td>
+                        <td>{{contestant.name}}</td>
+                        <td>{{contestant.score}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/sugar/1.4.1/sugar-full.min.js"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="//cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+        <script src="//cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+        <script src="js/leader-board.js"></script>
+    </body>
+</html>
