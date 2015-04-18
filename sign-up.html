@@ -1,0 +1,14 @@
+            <div class="well">
+                <h4>Add Contestant</h4>
+                <p> Total players: {{main.tournament.total_players}} </p>
+                <form class="form-inline" role="form" novalidate ng-submit="main.addContestant()">
+                    <!--<div class="form-group">
+                        <input type="text" class="form-control" ng-model="main.newContestant.lane" placeholder="Enter lane">
+                    </div>-->
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-disabled="main.canAdd===false">Add</button>
+                </form>
+            </div>
+        <button type="submit" class="btn btn-default" ng-disabled="main.isLockout() === false">Get Your Board!</button>
