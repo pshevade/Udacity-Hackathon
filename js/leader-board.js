@@ -2,6 +2,65 @@ var app = angular.module('leaderboard', ['firebase']);
 
 app.constant('FIREBASE_URI', 'https://udhack.firebaseio.com/');
 
+app.controller('Ocean', function (HitService) {
+    var ocean = this;
+    ocean.fireMissile = function (row, col) {
+        console.log('missile fired at', row, col);
+        // check if issile already fired here
+        HitService.recordResult(row, col);
+
+    };
+});
+
+app.controller('MyOcean', function () {
+    var myOcean = this;
+    var position = 
+[
+    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+];
+    ocean.updateMyocean = function (row, col) {
+        console.log('updating my for missile at', row, col);
+        if (position[row*10+col]) {
+            ++position[row*10+col]
+        }
+
+        function contains(a, obj) {
+            return a.some(function(element){return element == obj;})
+        }
+
+        if (contains(position, 2)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+        if (contains(position, 4)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+        if (contains(position, 8)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+
+    };
+
+
+});
+
+app.service('HitService', function ($firebaseArray, FIREBASE_URI) {
+    var service = this;
+    var ref = new Firebase(FIREBASE_URI);
+    var results = $firebaseArray(ref);
+
+    service.recordResult = function (row, col) {        
+        console.log('missile result sent', row, col);
+        return;
+    };
+
+});
+
 app.controller('MainCtrl', function (ContestantsService) {
     var main = this;
     main.newContestant = {lane: '', name: '', score: ''};
@@ -11,6 +70,7 @@ app.controller('MainCtrl', function (ContestantsService) {
     main.addContestant = function () {
         ContestantsService.addContestant(angular.copy(main.newContestant));
         main.newContestant = {lane: '', name: '', score: ''};
+        console.log('adding');
     };
 
     main.updateContestant = function (contestant) {
