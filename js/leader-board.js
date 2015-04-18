@@ -69,6 +69,13 @@ app.directive('signUp', function(){
     }
 });
 
+app.directive('displayScores', function(){
+    return {
+        restrict: 'E',
+        templateUrl: 'display-scores.html',
+    }
+});
+
 app.service('FiredArrayService', function ($firebaseArray, FIREBASE_URI){
     var service = this;
     var ref = new Firebase(FIREBASE_URI + '/tournament/fired_array');
