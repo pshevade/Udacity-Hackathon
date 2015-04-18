@@ -14,19 +14,23 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>Lane</th>
-                        <th>Contestant</th>
+                        <th>Player</th>
+                        <th>Name</th>
                         <th>Score</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="contestant in main.contestants">
-                        <td>{{contestant.lane}}</td>
+                        <td>{{contestant.id}}</td>
                         <td>{{contestant.name}}</td>
                         <td>{{contestant.score}}</td>
                     </tr>
                     </tbody>
                 </table>
+                <tr>
+                    <td><b>Remaining Ships&nbsp&nbsp&nbsp&nbsp       </b></td>
+                    <td style="PADDING-LEFT: 100px;">{{main.contestants.ships_left}}</td>
+                </tr>
             </div>
         </div>
 
