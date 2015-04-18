@@ -9,7 +9,6 @@
     </head>
     <body>
         <div class="container" ng-controller="MainCtrl as main">
-            <h3>Race to Awesome</h3>
             <div class="well">
                 <table class="table">
                     <thead>
@@ -17,6 +16,7 @@
                         <th>Player</th>
                         <th>Name</th>
                         <th>Score</th>
+                        <th>Ships Left</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -24,13 +24,28 @@
                         <td>{{contestant.id}}</td>
                         <td>{{contestant.name}}</td>
                         <td>{{contestant.score}}</td>
+                        <td>{{main.contestants.ships_left}}</td>
                     </tr>
                     </tbody>
                 </table>
-                <tr>
-                    <td><b>Remaining Ships&nbsp&nbsp&nbsp&nbsp       </b></td>
-                    <td style="PADDING-LEFT: 100px;">{{main.contestants.ships_left}}</td>
-                </tr>
+            </div>
+        </div>
+        <div class="container" ng-controller="Ocean as ocean">
+            <div class="ocean">
+                <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
+                        <button type="button" id="{{c}}{{r}}" class="btn btn-default" ng-click="ocean.fireMissile(r, c)">&nbsp;{{hits}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" ng-controller="MyOcean as myOcean">
+            <div class="myOcean">
+                <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
+                    <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
+                        <button type="button" id="{{c}}{{r}}" class="btn btn-default {{hits}}">&nbsp;</button>
+                    </div>
+                </div>
             </div>
         </div>
 

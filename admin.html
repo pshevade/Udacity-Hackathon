@@ -17,6 +17,7 @@
                     <th>Player</th>
                     <th>Name</th>
                     <th>Score</th>
+                    <th>Ships Left</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -25,6 +26,7 @@
                     <td><input type="text" ng-model="contestant.id" ng-blur="main.updateContestant(contestant)"/></td>
                     <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(contestant)"/></td>
                     <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td><input type="text" ng-model="contestant.ships_left" ng-blur="main.updateContestant(contestant)"/></td>
                     <td>
                         <button type="button" class="btn btn-link" ng-click="main.removeContestant(contestant)">Remove</button>
                     </td>
