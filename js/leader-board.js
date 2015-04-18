@@ -10,18 +10,63 @@ app.controller('Ocean', function (HitService) {
         HitService.recordResult(row, col);
 
     };
+    
+    ocean.update = function (row, col) {
+        console.log('updating Ocean for missile at', row, col);
+        if (position[row*10+col]) {
+            ++position[row*10+col]
+        }
+
+        function contains(a, obj) {
+            return a.some(function(element){return element == obj;})
+        }
+
+        if (contains(position, 2)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+        if (contains(position, 4)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+        if (contains(position, 8)) {
+            // you sunk my ship
+            // dec players ship conter
+        }
+
+    };
+
 });
 
-app.controller('MyOcean', function () {
+app.controller('MyOcean', function ($scope) {
     var myOcean = this;
-    var position = 
+    $scope.position = 
 [
-    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,8,8,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,8,8,8,8,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,2,3,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,4,0,0,0,0,
     0,0,0,0,0,4,0,0,0,0,
     0,0,0,0,0,4,0,0,0,0,
     0,0,0,0,0,0,0,0,0,0,
 ];
-    ocean.updateMyocean = function (row, col) {
+
+        $scope.evalIndex = function (index) {
+            console.log(index);
+            if ($scope.position[index] == 0) {
+                return "target-hole"
+            }
+            if ($scope.position[index]%2 == 0) {
+                return "ship"
+            } else {
+                return "target-hole-hit"
+            }
+        }
+
+    myOcean.update = function (row, col) {
         console.log('updating my for missile at', row, col);
         if (position[row*10+col]) {
             ++position[row*10+col]

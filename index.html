@@ -6,6 +6,7 @@
         <!-- Bootstrap -->
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link href="css/leaderboard.css" rel="stylesheet" />
+        <link href="css/battleship.css" rel="stylesheet" />
     </head>
     <body>
         <div class="container" ng-controller="MainCtrl as main">
@@ -29,19 +30,20 @@
             </div>
         </div>
         <div class="container" ng-controller="Ocean as ocean">
-            <div class="ocean">
+            <div class="ocean text-center">
                 <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
                     <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
-                        <button type="button" id="{{c}}{{r}}" class="btn btn-default" ng-click="ocean.fireMissile(r, c)">&nbsp;{{hits}}</button>
+                        <button type="button" id="{{c}}{{r}}" class="btn btn-default target-hole" ng-click="ocean.fireMissile(r, c)">&nbsp;</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><hr>
         <div class="container" ng-controller="MyOcean as myOcean">
-            <div class="myOcean">
+            <div class="myOcean text-center">
                 <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
                     <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
-                        <button type="button" id="{{c}}{{r}}" class="btn btn-default {{hits}}">&nbsp;</button>
+                        <button type="button" id="my-{{c}}{{r}}" class="btn btn-default" ng-class="evalIndex($parent.$index*10+$index)">&nbsp;</button>
+ 
                     </div>
                 </div>
             </div>
