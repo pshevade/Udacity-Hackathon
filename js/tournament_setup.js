@@ -13,22 +13,22 @@ app.controller('MainCtrl', function (TournamentService, ContestantsService, Fire
 
     main.fired_array = FiredArrayService.getFiredArray();
 
-    main.add = 0;
+    main.canAdd = true;
+    main.canAddF = true;
     main.lockout = false;
 
     main.isLockout = function() {
-        main.lockout = (main.tournament.total_players >= 4);
+        main.lockout = (main.tournament.total_players == 4);
         return main.lockout;
     }
 
-    main.canAdd = function() {
-        return main.add == 0;
+    main.canAddFalse = function() {
+        console.log("we are setting can Add to false without click")
+        return main.canAdd === false;
     }
 
     main.addContestant = function () {
-        main.tournament.last_id += 1;
-        main.newContestant.id =  main.tournament.last_id;
-        main.add = main.newContestant.id;
+        main.newContestant.id =  main.tournament.total_players;
         main.newContestant.score = 0;
         main.newContestant.ships_left = 3;
         console.log("our new contestant", main.newContestant);
@@ -43,9 +43,6 @@ app.controller('MainCtrl', function (TournamentService, ContestantsService, Fire
     };
 
     main.removeContestant = function (contestant) {
-        if (contestant.id == main.add) {
-            main.add = 0;
-        }
         ContestantsService.removeContestant(contestant);
         main.tournament.total_players -= 1;
         TournamentService.updateTournament(main.tournament);
@@ -62,28 +59,6 @@ app.controller('MainCtrl', function (TournamentService, ContestantsService, Fire
     };
 
 
-
-});
-
-app.directive('signUp', function(){
-    return {
-        restrict: 'E',
-        templateUrl: 'sign-up.html',
-    }
-});
-
-app.directive('signUpadmin', function(){
-    return {
-        restrict: 'E',
-        templateUrl: 'sign-upadmin.html',
-    }
-});
-
-app.directive('displayScores', function(){
-    return {
-        restrict: 'E',
-        templateUrl: 'display-scores.html',
-    }
 });
 
 app.service('FiredArrayService', function ($firebaseArray, FIREBASE_URI){
@@ -148,70 +123,3 @@ app.service('ContestantsService', function ($firebaseArray, FIREBASE_URI) {
     };
 });
 
-
-
-/* Template that was given
-
-var app = angular.module('leaderboard', ['firebase']);
-
-app.constant('FIREBASE_URI', 'https://crackling-heat-88.firebaseio.com/');
-//https://udhack.firebaseio.com/
-
-app.controller('MainCtrl', function (ContestantsService) {
-    var main = this;
-    main.newContestant = {lane: '', name: '', score: ''};
-    main.currentContestant = null;
-    main.contestants = ContestantsService.getContestants();
-    main.lockout = false;
-
-    main.isLockout = function() {
-        main.lockout = (main.contestants.length == 4);
-        return main.lockout;
-    }
-
-    main.addContestant = function () {
-        ContestantsService.addContestant(angular.copy(main.newContestant));
-        main.newContestant = {id: '', name: '', score: '', ships_left: ''};
-    };
-
-    main.updateContestant = function (contestant) {
-        ContestantsService.updateContestant(contestant);
-    };
-
-    main.removeContestant = function (contestant) {
-        ContestantsService.removeContestant(contestant);
-    };
-
-    main.incrementScore = function () {
-        main.currentContestant.score = parseInt(main.currentContestant.score, 10) + 1;
-        main.updateContestant(main.currentContestant);
-    };
-
-    main.decrementScore = function () {
-        main.currentContestant.score = parseInt(main.currentContestant.score, 10) - 1;
-        main.updateContestant(main.currentContestant);
-    };
-});
-
-app.service('ContestantsService', function ($firebaseArray, FIREBASE_URI) {
-    var service = this;
-    var ref = new Firebase(FIREBASE_URI);
-    var contestants = $firebaseArray(ref);
-
-    service.getContestants = function () {
-        return contestants;
-    };
-
-    service.addContestant = function (contestant) {
-        contestants.$add(contestant);
-    };
-
-    service.updateContestant = function (contestant) {
-        contestants.$save(contestant);
-    };
-
-    service.removeContestant = function (contestant) {
-        contestants.$remove(contestant);
-    };
-});
-*/

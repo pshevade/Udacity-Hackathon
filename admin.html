@@ -14,7 +14,7 @@
             <table class="table edit">
                 <thead>
                 <tr>
-                    <th>Player</th>
+                    <th>Player ID</th>
                     <th>Name</th>
                     <th>Score</th>
                     <th>Ships Left</th>
@@ -35,20 +35,7 @@
             </table>
 
             <div class="well">
-                <h4>Add Contestant</h4>
-
-                <form class="form-inline" role="form" novalidate ng-submit="main.addContestant()">
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="main.newContestant.id" placeholder="Enter Player Id">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" ng-model="main.newContestant.score" placeholder="Contestant Score">
-                    </div>
-                    <button type="submit" class="btn btn-default">Add</button>
-                </form>
+                <sign-upadmin></sign-upadmin>
             </div>
         </div>
 
