@@ -8,7 +8,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">
                     </div>
-                    <button type="submit" class="btn btn-default" ng-disabled="main.canAdd() === false || main.isLockout() === true">Add</button>
+                    <button type="submit" class="btn btn-default" ng-disabled="main.isLockout() === true">Add</button>
                 </form>
             </div>
         <button type="submit" class="btn btn-default" ng-disabled="main.isLockout() === false">Get Your Board!</button>

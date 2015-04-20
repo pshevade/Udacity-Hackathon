@@ -1,0 +1,20 @@
+<div class="well">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Name</th>
+                        <th>Score</th>
+                        <th>Ships Left</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="contestant in main.contestants">
+                        <td>{{contestant.id}}</td>
+                        <td>{{contestant.name}}</td>
+                        <td>{{contestant.score}}</td>
+                        <td>{{contestant.ships_left}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
