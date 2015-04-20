@@ -14,17 +14,19 @@
             <table class="table edit">
                 <thead>
                 <tr>
-                    <th>Lane</th>
-                    <th>Contestant</th>
+                    <th>Player</th>
+                    <th>Name</th>
                     <th>Score</th>
+                    <th>Ships Left</th>
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="contestant in main.contestants">
-                    <td><input type="text" ng-model="contestant.lane" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td><input type="text" ng-model="contestant.id" ng-blur="main.updateContestant(contestant)"/></td>
                     <td><input type="text" ng-model="contestant.name" ng-blur="main.updateContestant(contestant)"/></td>
                     <td><input type="text" ng-model="contestant.score" ng-blur="main.updateContestant(contestant)"/></td>
+                    <td><input type="text" ng-model="contestant.ships_left" ng-blur="main.updateContestant(contestant)"/></td>
                     <td>
                         <button type="button" class="btn btn-link" ng-click="main.removeContestant(contestant)">Remove</button>
                     </td>
@@ -37,7 +39,7 @@
 
                 <form class="form-inline" role="form" novalidate ng-submit="main.addContestant()">
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="main.newContestant.lane" placeholder="Enter lane">
+                        <input type="text" class="form-control" ng-model="main.newContestant.id" placeholder="Enter Player Id">
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" ng-model="main.newContestant.name" placeholder="Contestant Name">

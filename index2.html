@@ -15,19 +15,23 @@
                     <thead>
                     <tr>
                         <th>Player</th>
-                        <th>Hits</th>
+                        <th>Name</th>
+                        <th>Score</th>
                         <th>Ships Left</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr ng-repeat="contestant in main.contestants">
-                        <td>{{contestant.lane}}</td>
+                        <td>{{contestant.id}}</td>
                         <td>{{contestant.name}}</td>
                         <td>{{contestant.score}}</td>
+                        <td>{{contestant.ships_left}}</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
+            <!-- this is the code to sign up a player-->
+            <sign-up></sign-up>
         </div>
         <div class="container" ng-controller="Ocean as ocean">
             <div class="ocean text-center">
