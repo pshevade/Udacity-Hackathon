@@ -38,30 +38,18 @@ app.controller('OpOcean', function ($scope, HitService) {
 
 app.controller('MyOcean', function ($scope) {
     var myOcean = this;
-    $scope.positions = 
-[
-    0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,8,9,8,8,0,
-    0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,
-    0,0,0,2,3,0,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,
-    0,0,0,0,0,4,0,0,0,0,
-    0,0,0,0,0,4,0,0,0,0,
-    0,0,0,0,0,5,0,0,0,0,
-    0,0,0,0,0,0,0,0,0,0,
-];
+    $scope.positions = getMyOcean();
 
-        $scope.evalIndex = function (index) {
-            if ($scope.positions[index] == 0) {
-                return "target-hole"
-            }
-            if ($scope.positions[index]%2 == 0) {
-                return "ship"
-            } else {
-                return "target-hole-hit"
-            }
+    $scope.evalIndex = function (index) {
+        if ($scope.positions[index] == 0) {
+            return "target-hole"
         }
+        if ($scope.positions[index] < 0) {
+            return "target-hole-hit"
+        } else {
+            return "ship"
+        }
+    }
 
     myOcean.update = function (index) {
         console.log('updating my for missile at', index);
@@ -156,8 +144,8 @@ app.service('HitService', function ($firebaseArray, FIREBASE_URI) {
     var ref = new Firebase(FIREBASE_URI);
     var results = $firebaseArray(ref);
 
-    service.recordResult = function (row, col) {
-        console.log('missile result sent', row, col);
+    service.recordResult = function (index) {
+        console.log('missile result sent', index);
         return;
     };
 
