@@ -1,8 +1,5 @@
 <div class="myOcean text-center">
-                <div class="btn-group" role="group" aria-label="First group" ng-repeat="r in [1,2,3,4,5,6,7,8,9,10]">
-                    <div class="btn-group" role="group" aria-label="First group" ng-repeat="c in ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']">
-                        <button type="button" id="my-{{c}}{{r}}" class="btn btn-default" ng-class="evalIndex($parent.$index*10+$index)">&nbsp;</button>
-
-                    </div>
-                </div>
-            </div>
+    <div class="btn-group" role="group" aria-label="First group" ng-repeat="p in positions track by $index">
+        <button type="button" id="myPos-{{$index}}" class="btn btn-default" ng-class="evalIndex($index)">&nbsp;</button>
+    </div>
+</div>

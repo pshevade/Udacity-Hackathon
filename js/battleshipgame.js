@@ -5,45 +5,32 @@ app.constant('FIREBASE_URI', 'https://udhack.firebaseio.com/');
 // The player database
 app.constant('FIREBASE_URI2', 'https://crackling-heat-88.firebaseio.com')
 
-app.controller('Ocean', function ($scope, HitService) {
-    $scope.ocean = this;
-    $scope.position =
-    [
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-    ];
+app.controller('OpOcean', function ($scope, HitService) {
+    $scope.opOcean = this;
+    // create array of 100 zeros
+    $scope.positions = Array.apply(null, new Array(100)).map(Number.prototype.valueOf,0);
 
     $scope.evalIndex = function (index) {
-        if ($scope.position[index] == 0) {
+        if ($scope.positions[index] == 0) {
             return "target-hole"
         } else {
             return "target-hole-hit"
         }
     }
 
-    $scope.ocean.fireMissile = function (row, col) {
-        console.log('missile fired at', row, col);
+    $scope.opOcean.fireMissile = function (index) {
+        console.log('missile fired at', index);
         // check if missile already fired here
-        HitService.recordResult(row, col);
-        $scope.ocean.update(row, col);
+        HitService.recordResult(index);
+        $scope.opOcean.update(index);
+    }
 
-    };
-
-    $scope.ocean.update = function (row, col) {
-        console.log('updating Ocean for missile at', row, col);
-        var letters = ['A','B','C','D','E','F','G','H','I','J'];
-        if ($scope.position[((row.toNumber()-1)*10)+letters.indexOf(col)] == 0) {
-            $scope.position[((row.toNumber()-1)*10)+letters.indexOf(col)]= 1
+    $scope.opOcean.update = function (index) {
+        console.log('updating opOcean for missile at', index);
+        if ($scope.positions[index] == 0) {
+            $scope.positions[index] = 1
         }
-         console.log($scope.position);
+         console.log($scope.positions);
 
     };
 
@@ -51,56 +38,49 @@ app.controller('Ocean', function ($scope, HitService) {
 
 app.controller('MyOcean', function ($scope) {
     var myOcean = this;
-    $scope.position =
-    [
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,8,9,8,8,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,2,3,0,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-        0,0,0,0,0,4,0,0,0,0,
-        0,0,0,0,0,4,0,0,0,0,
-        0,0,0,0,0,5,0,0,0,0,
-        0,0,0,0,0,0,0,0,0,0,
-    ];
+    $scope.positions = 
+[
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,8,9,8,8,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,2,3,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,4,0,0,0,0,
+    0,0,0,0,0,5,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+];
 
-    $scope.evalIndex = function (index) {
-        if ($scope.position[index] == 0) {
-            return "target-hole";
+        $scope.evalIndex = function (index) {
+            if ($scope.positions[index] == 0) {
+                return "target-hole"
+            }
+            if ($scope.positions[index]%2 == 0) {
+                return "ship"
+            } else {
+                return "target-hole-hit"
+            }
         }
-        if ($scope.position[index]%2 == 0) {
-            return "ship";
-        } else {
-            return "target-hole-hit";
+
+    myOcean.update = function (index) {
+        console.log('updating my for missile at', index);
+        if (positions[index] == 0) {
+            ++positions[index]
         }
+    }
+
+});
+
+app.service('HitService', function ($firebaseArray, FIREBASE_URI) {
+    var service = this;
+    var ref = new Firebase(FIREBASE_URI);
+    var results = $firebaseArray(ref);
+
+    service.recordResult = function (index) {        
+        console.log('missile result sent', index);
+        return;
     };
-
-    myOcean.update = function (row, col) {
-        console.log('updating my for missile at', row, col);
-        if (position[row*10+col] == 0) {
-            ++position[row*10+col]
-        }
-
-        function contains(a, obj) {
-            return a.some(function(element){return element == obj;})
-        }
-
-        if (contains(position, 2)) {
-            // you sunk my ship
-            // dec players ship conter
-        }
-        if (contains(position, 4)) {
-            // you sunk my ship
-            // dec players ship conter
-        }
-        if (contains(position, 8)) {
-            // you sunk my ship
-            // dec players ship conter
-        }
-
-    };
-
 
 });
 
