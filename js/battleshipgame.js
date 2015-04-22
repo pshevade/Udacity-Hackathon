@@ -5,60 +5,20 @@ app.constant('FIREBASE_URI', 'https://udhack.firebaseio.com/');
 // The player database
 app.constant('FIREBASE_URI2', 'https://crackling-heat-88.firebaseio.com')
 
-app.controller('OpOcean', function ($scope, HitService) {
+app.controller('OpOcean', function ($scope, Service) {
     $scope.opOcean = this;
-    // create array of 100 zeros
-    $scope.positions = Array.apply(null, new Array(100)).map(Number.prototype.valueOf,0);
-
-    $scope.evalIndex = function (index) {
-        if ($scope.positions[index] == 0) {
-            return "target-hole"
-        } else {
-            return "target-hole-hit"
-        }
-    }
+    // create array of 100 water cells
+    $scope.positions = Array.apply(null, new Array(100)).map(String.prototype.valueOf, 'water');
 
     $scope.opOcean.fireMissile = function (index) {
         console.log('missile fired at', index);
-        // check if missile already fired here
-        HitService.recordResult(index);
-        $scope.opOcean.update(index);
+         $scope.positions[index] = Service.recordResult(index) ? 'water hit' : 'water miss';
     }
-
-    $scope.opOcean.update = function (index) {
-        console.log('updating opOcean for missile at', index);
-        if ($scope.positions[index] == 0) {
-            $scope.positions[index] = 1
-        }
-         console.log($scope.positions);
-
-    };
-
 });
 
-app.controller('MyOcean', function ($scope) {
+app.controller('MyOcean', function ($scope, Service) {
     var myOcean = this;
-    $scope.positions = getMyOcean();
-
-    myOcean.update = function (index) {
-        console.log('updating myOcean for missile at', index);
-        if (positions[index] != 'water') {
-            // replace ship name with 'hit'
-            positions[index] = 'hit ' + positions[index].slice(1).join(' ');
-        }
-    }
-
-});
-
-app.service('HitService', function ($firebaseArray, FIREBASE_URI) {
-    var service = this;
-    var ref = new Firebase(FIREBASE_URI);
-    var results = $firebaseArray(ref);
-
-    service.recordResult = function (index) {        
-        console.log('missile result sent', index);
-        return;
-    };
+    $scope.positions = Service.getNewOcean();
 
 });
 
@@ -129,16 +89,46 @@ app.controller('MainCtrl', function (TournamentService, ContestantsService, Fire
     Business-independent logic
 */
 
-app.service('HitService', function ($firebaseArray, FIREBASE_URI) {
+app.service('Service', function ($firebaseArray, FIREBASE_URI) {
     var service = this;
     var ref = new Firebase(FIREBASE_URI);
     var results = $firebaseArray(ref);
+    var positions;
 
     service.recordResult = function (index) {
-        console.log('missile result sent', index);
-        return;
+        // returns true if missile hit a ship
+        return service.updateMyOcean(index);
     };
 
+    service.getNewOcean = function () {
+        console.log('Initializing new ocean');
+        positions = getMyOcean();
+        return positions;
+    };
+
+    service.updateMyOcean = function (index) {
+        console.log('updating myOcean for missile at', index, positions[index]);
+        if (positions[index] != 'water') {
+            // replace ship name with 'hit'
+            positions[index] = 'hit ' + positions[index].split(' ').slice(1).join(' ');
+        }
+
+        function contains(a, obj) {
+            // returns true if some part of ship is found in ocean
+            return a.some( function(element) { return element.split(' ')[0] == obj; });
+        }
+
+        for (ship in fleet) {
+            if (!contains(positions, ship)) {
+                // a ship has been sunk
+                console.warn('You sunk my', ship + '!');
+                // dec players ship conter
+            }
+        }
+        //console.log('myOcean =', positions);
+
+        return positions[index].split(' ')[0] == 'hit'
+    };
 });
 
 app.service('FiredArrayService', function ($firebaseArray, FIREBASE_URI2){

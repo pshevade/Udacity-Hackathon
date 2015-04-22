@@ -26,6 +26,14 @@
   background-color: #3399FF;
 }
 
+.miss {
+  background-color: white;
+}
+
+.hit {
+  background-color: #900000 !important;
+}
+
 .ship {
   width: 20px;
   height: 20px;

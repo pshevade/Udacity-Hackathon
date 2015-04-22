@@ -1,20 +1,20 @@
+var fleet = {
+//  'type': size,
+	'carrier': 5,
+	'battleship': 4,
+	'criuser': 3,
+	'submarine' : 3,
+	'destroyer': 2
+	}
 
 function getMyOcean() {
 	// Creates an ocean array with randomly placed ships
 	// 'water' = Empty ocean, "type [bow, stern] [h, v]" = ship type
-	var fleet = {
-	//  'type': size,
-		'carrier': 5,
-		'battleship': 4,
-		'criuser': 3,
-		'sumarine' : 3,
-		'destroyer': 2
-		}
 
 	var positions, overlap;
 
 	while (true) {
-		// create array of 100 zeros
+		// create array of 100 'water' cells
 		positions = Array.apply(null, new Array(100)).map(String.prototype.valueOf, 'water');
 		overlap = false;
 
