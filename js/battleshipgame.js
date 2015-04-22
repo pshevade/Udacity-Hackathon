@@ -12,7 +12,7 @@ app.controller('OpOcean', function ($scope, Service) {
 
     $scope.opOcean.fireMissile = function (index) {
         console.log('missile fired at', index);
-         $scope.positions[index] = Service.recordResult(index) ? 'water hit' : 'water miss';
+        $scope.positions[index] = Service.recordResult(index) ? 'water hit' : 'water miss';
     }
 });
 
