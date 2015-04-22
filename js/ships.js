@@ -4,11 +4,11 @@ function getMyOcean() {
 	// 0 = Empty ocean, -1 = damage, "string" = ship type
 	var fleet = {
 	//  'type': size,
-		'Destroyer': 2,
-		'Sumarine' : 3,
-		'Criuser': 3,
+		'Carrier': 5,
 		'Battleship': 4,
-		'Carrier': 5
+		'Criuser': 3,
+		'Sumarine' : 3,
+		'Destroyer': 2
 		}
 
 	var positions, overlap;
