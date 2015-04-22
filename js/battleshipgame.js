@@ -40,21 +40,11 @@ app.controller('MyOcean', function ($scope) {
     var myOcean = this;
     $scope.positions = getMyOcean();
 
-    $scope.evalIndex = function (index) {
-        if ($scope.positions[index] == 0) {
-            return "target-hole"
-        }
-        if ($scope.positions[index] < 0) {
-            return "target-hole-hit"
-        } else {
-            return "ship"
-        }
-    }
-
     myOcean.update = function (index) {
-        console.log('updating my for missile at', index);
-        if (positions[index] == 0) {
-            ++positions[index]
+        console.log('updating myOcean for missile at', index);
+        if (positions[index] != 'water') {
+            // replace ship name with 'hit'
+            positions[index] = 'hit ' + positions[index].slice(1).join(' ');
         }
     }
 

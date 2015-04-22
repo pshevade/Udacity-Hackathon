@@ -19,12 +19,66 @@
   background-color: white;
 }
 
+.water {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+  background-color: #3399FF;
+}
+
 .ship {
   width: 20px;
   height: 20px;
   border-radius: 0px;
   background-color: #999999;
 
+}
+
+.bow.h {
+  width: 20px;
+  height: 20px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #999999;
+
+}
+
+.h {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+  background-color: #999999;
+}
+
+.stern.h {
+  width: 20px;
+  height: 20px;
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  background-color: #999999;
+}
+
+.bow.v {
+  width: 20px;
+  height: 20px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  background-color: #999999;
+}
+
+.v {
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+  background-color: #999999;
+}
+
+.stern.v {
+  width: 20px;
+  height: 20px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: #999999;
 }
 
 .opOcean {

@@ -1,21 +1,21 @@
 
 function getMyOcean() {
 	// Creates an ocean array with randomly placed ships
-	// 0 = Empty ocean, -1 = damage, "string" = ship type
+	// 'water' = Empty ocean, "type [bow, stern] [h, v]" = ship type
 	var fleet = {
 	//  'type': size,
-		'Carrier': 5,
-		'Battleship': 4,
-		'Criuser': 3,
-		'Sumarine' : 3,
-		'Destroyer': 2
+		'carrier': 5,
+		'battleship': 4,
+		'criuser': 3,
+		'sumarine' : 3,
+		'destroyer': 2
 		}
 
 	var positions, overlap;
 
 	while (true) {
 		// create array of 100 zeros
-		positions = Array.apply(null, new Array(100)).map(Number.prototype.valueOf,0);
+		positions = Array.apply(null, new Array(100)).map(String.prototype.valueOf, 'water');
 		overlap = false;
 
 		for (ship in fleet) {
@@ -25,26 +25,34 @@ function getMyOcean() {
 			var vPos = Math.floor(Math.random()*safeZone);
 			var posIndex = vPos*10 + hPos    // randomizes position of each ship
 			var vertical = Math.random()>.5; // randomizes direction of each ship
+			var attributes;
 
-			console.log('placing', ship, vertical?'vertically':'horizontally', 'starting at', posIndex);
+			console.log('placing', ship, vertical ? 'vertically' : 'horizontally', 'starting at', posIndex);
 
 			for (i=0; i < fleet[ship]; ++i){
 				// Check if ships overlap
-				if (positions[posIndex+i*(vertical?10:1)] != 0) {
+				if (positions[posIndex+i*(vertical?10:1)] != 'water') {
 					overlap = true;
 					break;
 				}
-				positions[posIndex+i*(vertical?10:1)] = ship;
+				// add attributes for front, back and orientation
+				attributes = '';
+				if (i==0) {
+					attributes += ' bow';
+				} else if (i==fleet[ship]-1) {
+					attributes += ' stern';
+				}
+				attributes += vertical ? ' v' : ' h';
+				positions[posIndex+i*(vertical?10:1)] = ship + attributes;
 			}
-
 		}
 
 		if (!overlap) {
-			break;
-		} else {
-			console.log('OVERLAPPING SHIPS, starting over!');
+			// all done
+			console.log(positions);
+			return positions;
 		}
+		
+		console.log('OVERLAPPING SHIPS, starting over!');
 	}
-
-	return positions;
 };
