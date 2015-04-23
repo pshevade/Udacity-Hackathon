@@ -1,8 +1,21 @@
+.opOcean, .myOcean {
+  width: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.opOcean div, .myOcean div {
+   float: left;
+   width: 20px;
+   height: 20px;
+   border-style: solid;
+   border-color: lightgray; 
+   border-width: 1px;
+
+}
+
 .water {
-  width: 20px;
-  height: 20px;
-  border-radius: 0px;
-  background-color: #3399FF;
+  background-color: DodgerBlue;
 }
 
 .miss {
@@ -10,69 +23,39 @@
 }
 
 .hit {
-  background-color: #900000 !important;
+  background-color: Crimson !important;
 }
 
 .bow.h {
-  width: 20px;
-  height: 20px;
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  background-color: #999999;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #848482;
 
 }
 
 .h {
-  width: 20px;
-  height: 20px;
-  border-radius: 0px;
-  background-color: #999999;
+  background-color: #848482;
 }
 
 .stern.h {
-  width: 20px;
-  height: 20px;
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px;
-  background-color: #999999;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #848482;
 }
 
 .bow.v {
-  width: 20px;
-  height: 20px;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  background-color: #999999;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: #848482;
 }
 
 .v {
-  width: 20px;
-  height: 20px;
-  border-radius: 0px;
-  background-color: #999999;
+  background-color: #848482;
 }
 
 .stern.v {
-  width: 20px;
-  height: 20px;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
-  background-color: #999999;
+  background-color: #848482;
 }
 
-.opOcean {
-  width:280px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.myOcean {
-  width:280px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-#button2 {
-  width: 100px;
-  height: 100px;
-}

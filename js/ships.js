@@ -52,7 +52,7 @@ function getMyOcean() {
 			console.log(positions);
 			return positions;
 		}
-		
+				
 		console.log('OVERLAPPING SHIPS, starting over!');
 	}
 };

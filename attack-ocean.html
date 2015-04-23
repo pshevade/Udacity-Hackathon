@@ -1,5 +1,5 @@
 <div class="opOcean text-center">
-    <div class="btn-group" role="group" aria-label="First group" ng-repeat="p in positions track by $index">
-        <button type="button" id="opPos-{{$index}}" class="btn btn-default {{p}}" ng-click="opOcean.fireMissile($index)">&nbsp;</button>
+    <div ng-repeat="position in positions track by $index">
+ 	     <div class="{{position}}" ng-click="opOcean.fireMissile($index)"></div>
     </div>
 </div>

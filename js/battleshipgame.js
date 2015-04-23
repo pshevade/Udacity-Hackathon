@@ -106,6 +106,7 @@ app.service('Service', function ($firebaseArray, FIREBASE_URI) {
         return positions;
     };
 
+    var sunk = [];
     service.updateMyOcean = function (index) {
         console.log('updating myOcean for missile at', index, positions[index]);
         if (positions[index] != 'water') {
@@ -119,9 +120,10 @@ app.service('Service', function ($firebaseArray, FIREBASE_URI) {
         }
 
         for (ship in fleet) {
-            if (!contains(positions, ship)) {
+            if (!contains(positions, ship) && !contains(sunk, ship)) {
                 // a ship has been sunk
                 console.warn('You sunk my', ship + '!');
+                sunk.push(ship);
                 // dec players ship conter
             }
         }
