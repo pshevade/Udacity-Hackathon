@@ -110,8 +110,7 @@ app.service('Service', function ($firebaseArray, FIREBASE_URI) {
     service.updateMyOcean = function (index) {
         console.log('updating myOcean for missile at', index, positions[index]);
         if (positions[index] != 'water') {
-            // replace ship name with 'hit'
-            positions[index] = 'hit ' + positions[index].split(' ').slice(1).join(' ');
+            positions[index] = 'hit ' + positions[index];
         }
 
         function contains(a, obj) {

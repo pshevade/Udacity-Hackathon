@@ -22,13 +22,13 @@
   background-color: white;
 }
 
-.hit {
+.hit  {
   background-color: Crimson !important;
 }
 
 .bow.h {
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
+  border-bottom-left-radius: 50%;
+  border-top-left-radius: 50%;
   background-color: #848482;
 
 }
@@ -38,14 +38,14 @@
 }
 
 .stern.h {
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
+  border-bottom-right-radius: 25%;
+  border-top-right-radius: 25%;
   background-color: #848482;
 }
 
 .bow.v {
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
+  border-top-right-radius: 50%;
+  border-top-left-radius: 50%;
   background-color: #848482;
 }
 
@@ -54,8 +54,8 @@
 }
 
 .stern.v {
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 25%;
+  border-bottom-left-radius: 25%;
   background-color: #848482;
 }
 
