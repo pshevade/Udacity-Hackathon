@@ -22,40 +22,31 @@
   background-color: white;
 }
 
-.hit  {
+.hit {
   background-color: Crimson !important;
+}
+
+.h, .v {
+  background-color: #848482;
 }
 
 .bow.h {
   border-bottom-left-radius: 50%;
   border-top-left-radius: 50%;
-  background-color: #848482;
-
-}
-
-.h {
-  background-color: #848482;
 }
 
 .stern.h {
   border-bottom-right-radius: 25%;
   border-top-right-radius: 25%;
-  background-color: #848482;
 }
 
 .bow.v {
   border-top-right-radius: 50%;
   border-top-left-radius: 50%;
-  background-color: #848482;
-}
-
-.v {
-  background-color: #848482;
 }
 
 .stern.v {
   border-bottom-right-radius: 25%;
   border-bottom-left-radius: 25%;
-  background-color: #848482;
 }
 
