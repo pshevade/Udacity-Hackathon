@@ -101,21 +101,21 @@ app.service('Service', function ($firebaseArray, FIREBASE_URI) {
     };
 
     service.getNewOcean = function () {
-        console.log('Initializing new ocean');
+        console.log('Initializing new ocean with my ships');
         positions = getMyOcean();
         return positions;
     };
+
+    function contains(a, obj) {
+        // returns true if some part of ship is found in ocean
+        return a.some( function(element) { return element.split(' ')[0] == obj; });
+    }
 
     var sunk = [];
     service.updateMyOcean = function (index) {
         console.log('updating myOcean for missile at', index, positions[index]);
         if (positions[index] != 'water') {
             positions[index] = 'hit ' + positions[index];
-        }
-
-        function contains(a, obj) {
-            // returns true if some part of ship is found in ocean
-            return a.some( function(element) { return element.split(' ')[0] == obj; });
         }
 
         for (ship in fleet) {
@@ -126,7 +126,6 @@ app.service('Service', function ($firebaseArray, FIREBASE_URI) {
                 // dec players ship conter
             }
         }
-        //console.log('myOcean =', positions);
 
         return positions[index].split(' ')[0] == 'hit'
     };

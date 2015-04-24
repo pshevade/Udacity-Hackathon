@@ -53,6 +53,6 @@ function getMyOcean() {
 			return positions;
 		}
 				
-		console.log('OVERLAPPING SHIPS, starting over!');
+		console.warn('%c OVERLAPPING SHIPS, starting over!', 'color: red');
 	}
 };
